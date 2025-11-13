@@ -1,5 +1,5 @@
 import sqlite3
-from pathlib import path
+from pathlib import Path
 
 
 #Variável global constante - guarda o caminho do arquivo do db de dados sqlite
@@ -14,22 +14,24 @@ def init_db():
 #Criando a minha tabela (users)
 # comando SQL que eu passei como uma string multilinha para o método cur.execute() - 
 
-cur.execute("""
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    cpf TEXT UNIQUE NOT NULL,
-    senha_hash TEXT NOT NULL,
-    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-); 
-            """)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        cpf TEXT UNIQUE NOT NULL,
+        senha_hash TEXT NOT NULL,
+        criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ); 
+    """)
 
-conn.commit() #gravando as mudançassss
-conn.close() #fechando a conexão com o banco :)
+    conn.commit() #gravando as mudançassss
+    conn.close() #fechando a conexão com o banco :)
+
+print(f"Banco de dados inicializado em {DB_PATH}")
+
 
 
 if __name__ == '__main__':
     init_db()
-    print(f"Banco de dados inicializado em {DB_PATH}")
     
