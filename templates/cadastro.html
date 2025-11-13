@@ -8,7 +8,7 @@
 </head>
     <main class="container">
         <h1>Cadastre-se</h1>
-        <form id="cadForm" method="post" action="submit">
+        <form id="cadForm" method="post" action="/submit">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome"  required>
 
@@ -16,15 +16,16 @@
             <input type="email" name="email" id="email" required>
 
             <label for="cpf">CPF:</label>
-            <input type="text" pattern="\d1{11}" name="cpf" id="cpf" placeholder="Ex.: 123,456.789-00" required>
+            <input type="text" name="cpf" id="cpf" pattern="^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$" placeholder="Ex.: 12345678900" required>
 
             <label for="senha">Senha:</label>
             <input type="password" name="senha" id="senha" required>
 
-        </form>
             <button type="submit">Cadastrar</button>
 
-    </main>
+        </form>
 
+    </main>
+<script src="/static/js/scripts.js"></script>
 </body>
 </html>
