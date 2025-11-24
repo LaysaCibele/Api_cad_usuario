@@ -43,3 +43,13 @@ button{
 button:hover{
     background-color: rgb(84, 39, 116);
 }
+
+.link{
+    color: purple;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.link:hover{
+    text-decoration: underline;
+}
