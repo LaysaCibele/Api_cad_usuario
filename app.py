@@ -90,6 +90,31 @@ def api_criar_usuario():
 def api_get_usuario(user_id):
     ...
     
-       
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    data = request.get_json()
+    email = data.get('email')
+    senha = data.get('senha')
+    
+    if not email or not senha:
+        return jsonify({"erro" : "Informe email e senha"}), 400
+    
+    conn = get_db_conncetion()
+    cur = conn.cursor()
+    cur.execute("SELECT id, senha_hash FROM users WHERE email = ? ", (email,))
+    usuario = cur.fetchone()
+    conn.close()
+    
+    if usuario is None:
+        return jsonify({"erro": "Usuário não encontrado."}), 404
+    
+    
+    user_id, senha_hash = usuario
+    
+    if not check_password_hash(senha_hash, senha):
+        return jsonify({"erro": "Senha incorreta."}), 401
+    
+    return jsonify({"mensagem": "Login bem-sucedido!", "user_id": user_id}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
