@@ -64,6 +64,7 @@ loginForm.addEventListener('submit', async(evento) => {
 
     if (resposta.ok){
         alert("Login realizado!")
+        form.reset();
     }
     else{
         alert("data.erro");
